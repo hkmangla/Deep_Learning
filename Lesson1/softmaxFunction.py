@@ -6,25 +6,9 @@ import numpy as np
 import math
 
 def softmax(x):
-	try:
-		x = [list(i) for i in zip(*x)]
-		probList = []
-		for i in x:
-			probList.append(softmaxCol(i))
-
-		return np.transpose(np.asarray(probList))
-	except:
-		return softmaxCol(x)
-def softmaxCol(x):
     """Compute softmax values for each sets of scores in x."""
     # TODO: Compute and return softmax(x)
-    totalSum = 0.0
-    for score in x:
-    	totalSum += math.exp(score)
-    probList = []
-    for score in x:
-    	probList.append(math.exp(score)/totalSum)
-    return np.asarray(probList)
+    return np.exp(x) / np.sum(np.exp(x), axis = 0)
 
 print(softmax(scores))
 
